@@ -1,0 +1,27 @@
+{
+  "name": "integration-test1",
+  "version": "1.0.0",
+  "description": "integration-test1",
+  "homepage": "https://github.com/uhamyou/Hubspot_Integration_Practice1#readme",
+  "bugs": {
+    "url": "https://github.com/uhamyou/Hubspot_Integration_Practice1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uhamyou/Hubspot_Integration_Practice1.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pug": "^3.0.3"
+  },
+  "devDependencies": {}
+}
