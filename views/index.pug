@@ -5,9 +5,18 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1")
     link(rel="stylesheet", href="/css/style.css")
   body
-    h1 Contacts
-    .cards
-        each contact in data
-            .card
-              h2.card__name #{contact.properties.firstname}  #{contact.properties.lastname}
-              p.card__email #{contact.properties.email}
+    h1 List of Pets
+    table
+      thead
+        tr
+          th Name
+          th Type
+          th Weight
+          th Age
+        tbody
+          each pet in pets
+            tr
+              td= pet.properties.name
+              td= pet.properties.pet_type
+              td= pet.properties.weight
+              td= pet.properties.age
