@@ -19,23 +19,53 @@ if (!PRIVATE_APP_ACCESS) {
 };
 const PORT = 3000;
 
-// Retrieve all contacts
+// Home - Retrieve all contacts
 app.get('/', async (req, res) => {
     const petsEndpoint = 'https://api.hubspot.com/crm/v3/objects/pets?properties=name,pet_type,weight,age';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
-    }
+    };
     const params = {
         properties: ['pet_name', 'type', 'weight', 'age']
-    }
+    };
     try {
         const response = await axios.get(petsEndpoint, { headers, params });
         const pets = response.data.results;
-        res.render('index', { title: 'List of Pets', pets: pets });
+        res.render('homepage', { title: 'List of Pets', pets: pets });
+    } catch (error) {
+        console.error(error);
+    };
+});
+// Getting update form
+app.get('/update-cobj', async (req, res) => {
+    try {
+        res.render('updates', {title: 'New Pet Addition Form'});
     } catch (error) {
         console.error(error);
     }
+});
+// Posting a new pet
+app.post('/update-cobj', async (req, res) => {
+    const petsEndpoint = 'https://api.hubspot.com/crm/v3/objects/pets';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+    const data = {
+        properties: {
+            name: req.body.name,
+            pet_type: req.body.pet_type,
+            weight: req.body.weight,
+            age: req.body.age
+        }
+    };
+    try {
+        const response = await axios.post(petsEndpoint, data, { headers });
+        res.redirect('/');  // back to home
+    } catch (error) {
+        console.error(error);
+    };
 });
 // Now listening
 app.listen(PORT, () => console.log('Listening on http://localhost:' + PORT));
